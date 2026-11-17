@@ -11,7 +11,7 @@ If you've used an RMM, you already know this idea: set a policy once at the top,
 
 Put these files in the org's `.github` repo, and every repo in the org that doesn't have its own copy uses them:
 
-- `ISSUE_TEMPLATE/` (issue forms and `config.yml`)
+- `.github/ISSUE_TEMPLATE/` (issue forms and `config.yml`)
 - `PULL_REQUEST_TEMPLATE.md`
 - `CONTRIBUTING.md`
 - `SECURITY.md`
@@ -20,7 +20,9 @@ Put these files in the org's `.github` repo, and every repo in the org that does
 A few things to know:
 
 - **The repo's own file always wins.** If `msp-scripts` adds its own `CONTRIBUTING.md`, it stops using the org's.
+- **Issue templates have one required location.** Most of these files can sit in the root of the `.github` repo, but issue templates and `config.yml` only work from `.github/ISSUE_TEMPLATE/`. Put them in the root and other repos silently ignore them.
 - **Issue templates are all-or-nothing.** If a repo has any template of its own, it stops inheriting the org's templates entirely.
+- **Labels must exist everywhere.** If a template applies a label, that label has to exist in the `.github` repo and in every repo that uses the template.
 - **Defaults aren't copied into each repo.** You won't see them in a clone. They show up in GitHub's interface: the **New issue** chooser, a new PR's description, and the links on the issue and PR pages.
 
 ## Workflow templates
