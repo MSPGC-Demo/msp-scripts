@@ -1,0 +1,14 @@
+name: PowerShell CI
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    # The real work happens in the org's shared workflow, so every repo stays in sync.
+    uses: MSPGC-Demo/.github/.github/workflows/reusable-powershell-ci.yml@main
