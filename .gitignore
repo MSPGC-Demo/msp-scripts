@@ -1,0 +1,11 @@
+# Release packages are built by CI, never committed.
+*.zip
+*.sha256
+
+# Test output
+TestResults/
+testResults.xml
+
+# OS clutter
+Thumbs.db
+.DS_Store
