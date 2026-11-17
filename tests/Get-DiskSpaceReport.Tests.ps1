@@ -36,6 +36,17 @@ Describe 'Get-DiskSpaceReport' {
         $d.FreeGB | Should -Be 10
     }
 
+    It 'flags disks below the default 10% threshold' {
+        $result = & $script:ScriptPath -WarningAction SilentlyContinue
+        ($result | Where-Object Drive -EQ 'C:').LowSpace | Should -BeFalse
+        ($result | Where-Object Drive -EQ 'D:').LowSpace | Should -BeTrue
+    }
+
+    It 'uses a custom threshold' {
+        $result = & $script:ScriptPath -WarningThresholdPercent 30 -WarningAction SilentlyContinue
+        ($result | Where-Object Drive -EQ 'C:').LowSpace | Should -BeTrue
+    }
+
     It 'handles a disk that reports zero size' {
         Mock Get-CimInstance {
             [PSCustomObject]@{ DeviceID = 'E:'; Size = 0; FreeSpace = 0 }
